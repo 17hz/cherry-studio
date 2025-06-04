@@ -344,5 +344,15 @@ describe('export', () => {
       expect(markdown).toContain('Single user query')
       expect(markdown.split('\n\n---\n\n').length).toBe(1)
     })
+
+    it('should include reasoning section when option is enabled', () => {
+      const msgWithReasoning = createMessage({ role: 'assistant', id: 'a_reason' }, [
+        { type: MessageBlockType.MAIN_TEXT, content: 'Answer with reasoning' },
+        { type: MessageBlockType.THINKING, content: 'Reasoning details' }
+      ])
+      const markdown = messagesToMarkdown([msgWithReasoning], true)
+      expect(markdown).toContain('<details')
+      expect(markdown).toContain('Reasoning details')
+    })
   })
 })
