@@ -72,7 +72,7 @@ class FileStorage {
           return {
             id,
             origin_name: file,
-            name: file + ext,
+            name: file,
             path: storedFilePath,
             created_at: storedStats.birthtime.toISOString(),
             size: storedStats.size,
